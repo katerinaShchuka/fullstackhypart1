@@ -39,11 +39,19 @@ const App = () => {
   const [bad, setBad] = useState(0)
 
   let sum = () => {
+
         let average = (good + neutral + bad)/3
 
-         return (
-          average
-         )
+          if (average <= 0) 
+          {
+            return <p>No feedback given</p>
+          } 
+          
+          else {
+             return<p>{average}</p>
+          }
+        
+         
   }
 
   let percent = () => {
