@@ -23,9 +23,15 @@ const Statistics = (props) => {
   return (
   <>
     <div>average {props.sum}</div>
-    <div>positive {props.percent} % </div>
+    <div>positive {props.percent}</div>
     </>
   )
+}
+
+const StatisticLine = (props) => {
+
+  let total = props.good + props.bad + props.neutral
+  return ( <div>Total: {total}</div> )
 }
 
 
@@ -55,11 +61,18 @@ const App = () => {
   }
 
   let percent = () => {
-    let percent = 100/(good + neutral + bad)
-    return (
-      percent
-    )
+    let per = 100/(good + neutral + bad)
+     if (per <= 0) 
+          {
+            return <p>No feedback given</p>
+          } 
+          
+          else {
+             return<p>{per} %</p>
+          }
   }
+
+
  
 
   return (
@@ -73,6 +86,7 @@ const App = () => {
       <Display text="neutral" value={neutral}/>
       <Display text="bad" value={bad}/>
       <Statistics sum={sum()} percent={percent()}/>
+      <StatisticLine good={good} bad={bad} neutral={neutral}/>
     </div>
   )
 }
