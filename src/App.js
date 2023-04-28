@@ -18,19 +18,16 @@ const Display = (props) =>
   {props.text} {props.value}
   </div>
 
-const Average = (props) => {
+const Statistics = (props) => {
 
   return (
-    <div>{props.text} {props.sum}</div>
+  <>
+    <div>average {props.sum}</div>
+    <div>positive {props.percent} % </div>
+    </>
   )
 }
 
-const Positive = (props) => {
-
-  return (
-    <div>{props.text} {props.percent} % </div>
-  )
-}
 
 const App = () => {
 
@@ -41,8 +38,21 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  let sum = () => {
+        let average = (good + neutral + bad)/3
 
+         return (
+          average
+         )
+  }
 
+  let percent = () => {
+    let percent = 100/(good + neutral + bad)
+    return (
+      percent
+    )
+  }
+ 
 
   return (
     <div>
@@ -54,8 +64,7 @@ const App = () => {
       <Display text="good" value={good}/>
       <Display text="neutral" value={neutral}/>
       <Display text="bad" value={bad}/>
-      <Average sum={(good + neutral + bad)/3} text="average"/>
-      <Positive percent={100/(good + neutral + bad)} text="positive" />
+      <Statistics sum={sum()} percent={percent()}/>
     </div>
   )
 }
