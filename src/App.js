@@ -15,23 +15,50 @@ const Button = (props) => {
 
 const Display = (props) => 
 <div>
-  {props.text} {props.value}
+  <table>
+  <tr>
+  <td>{props.text}</td> 
+  <td>{props.value}</td>
+  </tr>
+  </table>
   </div>
 
 const Statistics = (props) => {
 
   return (
   <>
-    <div>average {props.sum}</div>
-    <div>positive {props.percent}</div>
-    </>
+    <div>
+     <table>
+      <tr>
+        <td>average</td>
+        <td>{props.sum}</td>
+      </tr> 
+
+       <tr>  
+        <td>positive</td>
+        <td>{props.percent}</td>
+    </tr>
+</table>
+</div>
+</>
   )
 }
 
 const StatisticLine = (props) => {
 
   let total = props.good + props.bad + props.neutral
-  return ( <div>Total: {total}</div> )
+  return ( 
+  <> 
+  <div>
+    <table>
+      <tr>
+      <td>Total:</td> 
+      <td>{total}</td>
+      </tr>
+    </table>
+  </div> 
+  </>
+  )
 }
 
 
@@ -50,11 +77,11 @@ const App = () => {
 
           if (average <= 0) 
           {
-            return <p>No feedback given</p>
+            return <div>No feedback given</div>
           } 
           
           else {
-             return<p>{average}</p>
+             return<div>{average}</div>
           }
         
          
@@ -64,11 +91,10 @@ const App = () => {
     let per = 100/(good + neutral + bad)
      if (per <= 0) 
           {
-            return <p>No feedback given</p>
+            return <div>No feedback given</div>
           } 
-          
           else {
-             return<p>{per} %</p>
+             return<div>{per} %</div>
           }
   }
 
